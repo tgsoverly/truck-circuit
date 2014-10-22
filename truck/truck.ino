@@ -1,4 +1,4 @@
-int rightIn = 5;         // the number of the input pin
+ int rightIn = 5;         // the number of the input pin
 int rightOut = 11;       // the number of the output pin
 int leftIn = 6;         // the number of the input pin
 int leftOut = 12;       // the number of the output pin
@@ -27,6 +27,7 @@ long mainTime = 0;         // the last time the output pin was toggled
 long rightTime = 0;         // the last time the output pin was toggled
 long leftTime = 0;         // the last time the output pin was toggled
 long debounce = 200;   // the debounce time, increase if the output flickers
+long blinkSpeed = 700;
 
 void setup()
 {
@@ -69,7 +70,7 @@ void loop()
   }
   //If the left blinker is on, then cycle it every second.
   if(leftOn){
-    if(millis()-leftSwitch>1000){
+    if(millis()-leftSwitch>blinkSpeed){
       leftSwitch=millis();
       if(leftState == HIGH){
         leftState = LOW;
@@ -96,7 +97,7 @@ void loop()
 
   //If the right blinker is on, then cycle it every second.
   if(rightOn){
-    if(millis()-rightSwitch>1000){
+    if(millis()-rightSwitch>blinkSpeed){
       rightSwitch=millis();
       if(rightState == HIGH){
         rightState = LOW;
